@@ -11,13 +11,14 @@ const limitToUser = setField({
 });
 
 const setDateStamp = require("../../hooks/set-date-stamp");
+const setRole = require("../../hooks/set-role")
 
 module.exports = {
   before: {
     all: [],
     find: [authenticate("jwt"), limitToUser],
     get: [authenticate("jwt"), limitToUser],
-    create: [hashPassword("password"), setDateStamp("dateCreated")],
+    create: [setRole(), hashPassword("password"), setDateStamp("dateCreated")],
     update: [hashPassword("password"), authenticate("jwt"), limitToUser],
     patch: [hashPassword("password"), authenticate("jwt"), limitToUser],
     remove: [authenticate("jwt"), limitToUser],

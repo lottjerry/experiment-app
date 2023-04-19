@@ -16,7 +16,8 @@ module.exports = function (app) {
           table.string("username").unique();
           table.string("email").unique();
           table.string("password");
-          table.string('dateCreated')
+          table.string("role");
+          table.string("dateCreated");
         })
         .then(() => console.log(`Created ${tableName} table`))
         .catch((e) => console.error(`Error creating ${tableName} table`, e));
