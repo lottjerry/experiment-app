@@ -247,6 +247,10 @@
 					<p>Account Creation Date:</p>
 					<p>{{ user.dateCreated }}</p>
 				</div>
+				<div class="flex justify-center gap-3 pt-10">
+					<p>User Role:</p>
+					<p>{{ user.role }}</p>
+				</div>
 				<button
 					v-if="!(usernameEdit || emailEdit)"
 					@click="deleteWarn(user.id)"

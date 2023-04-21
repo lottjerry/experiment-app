@@ -57,3 +57,35 @@ app.use(express.errorHandler({ logger }));
 app.hooks(appHooks);
 
 module.exports = app;
+
+const createAdmin = async () => {
+  const userUsername = process.env.ADMIN_USERNAME
+  const userPassword = process.env.ADMIN_PASSWORD
+  const userEmail = process.env.ADMIN_EMAIL
+  const userRole = process.env.ADMIN_ROLE
+
+  // Create the admin user if it doesn't exist
+  const usersService = app.service("users");
+  const existingAdmin = await usersService.find({
+    query: { username: userUsername },
+  });
+  if (existingAdmin.total === 0) {
+    const adminUser = {
+      username: userUsername,
+      email: userEmail,
+      password: userPassword,
+      role: userRole,
+      dateCreated: new Date().toLocaleDateString("en-us", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      }),
+    };
+    await usersService.create(adminUser);
+    console.log(`Admin user has been created.`);
+  } else {
+    console.log(`Admin user already exists.`);
+  }
+};
+
+createAdmin();
