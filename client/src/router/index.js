@@ -3,7 +3,8 @@ import VueRouter from 'vue-router';
 import LoginView from '../views/LoginView.vue';
 import MessagesView from '../views/MessagesView.vue';
 import ProfileView from '../views/ProfileView.vue';
-import store from '../store/index.js'
+import AdminView from '../views/AdminView.vue';
+import store from '../store/index.js';
 
 Vue.use(VueRouter);
 
@@ -54,6 +55,11 @@ const routes = [
 					next('/');
 				});
 		},
+	},
+	{
+		path: '/admin',
+		name: 'admin',
+		component: AdminView,
 	},
 ];
 
