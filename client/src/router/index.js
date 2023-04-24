@@ -60,6 +60,20 @@ const routes = [
 		path: '/admin',
 		name: 'admin',
 		component: AdminView,
+		beforeEnter(to, from, next) {
+			store
+				.dispatch('auth/authenticate')
+				.then(() => {
+					if (store.getters['users/list'][0].role === 'admin') {
+						next();
+					} else {
+						next('/profile'); // Redirect to login if not admin.
+					}
+				})
+				.catch(() => {
+					next('/'); // Redirect to login if not authenticated.
+				});
+		},
 	},
 ];
 

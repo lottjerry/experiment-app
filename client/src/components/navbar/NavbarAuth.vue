@@ -37,6 +37,16 @@
 									>Profile</router-link
 								>
 							</li>
+							<div v-for="user in users" :key="user.id">
+								<li class="py-1" v-if="user.role === 'admin'">
+									<router-link
+										to="/admin"
+										class="border-2 border-blue-600 bg-white block font-bold text-base text-blue-600 hover:bg-blue-600 hover:text-white cursor-pointer rounded-lg p-1 hover:border-black"
+										>Admin</router-link
+									>
+								</li>
+							</div>
+
 							<li class="py-1">
 								<a
 									@click="logout"
