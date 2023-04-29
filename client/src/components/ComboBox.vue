@@ -8,6 +8,7 @@
 			>
 			<select
 				v-model="selectedUser"
+				v-on:change="updateUser"
 				v-for="user in users"
 				:key="user.id"
 				:id="'users_' + user.id"
@@ -18,9 +19,6 @@
 					{{ user.username }}
 				</option>
 			</select>
-			<div>
-				{{ selectedUser }}
-			</div>
 		</div>
 	</div>
 </template>
@@ -31,8 +29,13 @@ import { mapGetters } from 'vuex';
 export default {
 	data() {
 		return {
-			selectedUser: '',
+			selectedUser: null,
 		};
+	},
+	methods: {
+		updateUser() {
+			this.$emit('user-selected', this.selectedUser)
+		}
 	},
 	computed: {
 		...mapGetters('users', { findUsersInStore: 'find' }),
