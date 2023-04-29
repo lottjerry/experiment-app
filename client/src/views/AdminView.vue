@@ -2,7 +2,9 @@
 	<div>
 		<h1 class="text-2xl text-blue-600 font-bold">Admin</h1>
 		<ComboBox @user-selected="handleSelectedUser" />
-		{{ selectedUser }}
+		<div v-if="selectedUser">
+			{{ selectedUser.username }}
+		</div>
 	</div>
 </template>
 
