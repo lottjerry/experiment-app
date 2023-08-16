@@ -58,6 +58,7 @@ app.hooks(appHooks);
 
 module.exports = app;
 
+/*
 const createAdmin = async () => {
   const userUsername = process.env.ADMIN_USERNAME
   const userPassword = process.env.ADMIN_PASSWORD
@@ -89,3 +90,4 @@ const createAdmin = async () => {
 };
 
 createAdmin();
+*/
